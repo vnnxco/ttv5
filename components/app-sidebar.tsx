@@ -1,41 +1,181 @@
-import React from 'react';
-import { NavMain } from './nav-main';
-import { NavSecondary } from './nav-secondary';
-import { NavDocuments } from './nav-documents';
-import { NavUser } from './nav-user';
-import { useMobile } from '../hooks/use-mobile';
+"use client"
 
-export function AppSidebar() {
-  const isMobile = useMobile();
-  
-  if (isMobile) {
-    return null; // Hide sidebar on mobile, would typically use a drawer/overlay
-  }
+import * as React from "react"
+import {
+  ArrowUpCircleIcon,
+  BarChartIcon,
+  CameraIcon,
+  ClipboardListIcon,
+  DatabaseIcon,
+  FileCodeIcon,
+  FileIcon,
+  FileTextIcon,
+  FolderIcon,
+  HelpCircleIcon,
+  LayoutDashboardIcon,
+  ListIcon,
+  SearchIcon,
+  SettingsIcon,
+  UsersIcon,
+} from "lucide-react"
 
+import { NavDocuments } from '@/components/nav-documents'
+import { NavMain } from '@/components/nav-main'
+import { NavSecondary } from '@/components/nav-secondary'
+import { NavUser } from '@/components/nav-user'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar'
+
+const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+  navMain: [
+    {
+      title: "Dashboard",
+      url: "#",
+      icon: LayoutDashboardIcon,
+    },
+    {
+      title: "Lifecycle",
+      url: "#",
+      icon: ListIcon,
+    },
+    {
+      title: "Analytics",
+      url: "#",
+      icon: BarChartIcon,
+    },
+    {
+      title: "Projects",
+      url: "#",
+      icon: FolderIcon,
+    },
+    {
+      title: "Team",
+      url: "#",
+      icon: UsersIcon,
+    },
+  ],
+  navClouds: [
+    {
+      title: "Capture",
+      icon: CameraIcon,
+      isActive: true,
+      url: "#",
+      items: [
+        {
+          title: "Active Proposals",
+          url: "#",
+        },
+        {
+          title: "Archived",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Proposal",
+      icon: FileTextIcon,
+      url: "#",
+      items: [
+        {
+          title: "Active Proposals",
+          url: "#",
+        },
+        {
+          title: "Archived",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Prompts",
+      icon: FileCodeIcon,
+      url: "#",
+      items: [
+        {
+          title: "Active Proposals",
+          url: "#",
+        },
+        {
+          title: "Archived",
+          url: "#",
+        },
+      ],
+    },
+  ],
+  navSecondary: [
+    {
+      title: "Settings",
+      url: "#",
+      icon: SettingsIcon,
+    },
+    {
+      title: "Get Help",
+      url: "#",
+      icon: HelpCircleIcon,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: SearchIcon,
+    },
+  ],
+  documents: [
+    {
+      name: "Data Library",
+      url: "#",
+      icon: DatabaseIcon,
+    },
+    {
+      name: "Reports",
+      url: "#",
+      icon: ClipboardListIcon,
+    },
+    {
+      name: "Word Assistant",
+      url: "#",
+      icon: FileIcon,
+    },
+  ],
+}
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <aside className="w-64 bg-white shadow-sm border-r border-gray-200 min-h-screen">
-      <div className="p-6">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">D</span>
-          </div>
-          <span className="font-semibold text-gray-900">Dashboard</span>
-        </div>
-      </div>
-      
-      <nav className="px-3 space-y-1">
-        <NavMain />
-        <div className="pt-4">
-          <NavSecondary />
-        </div>
-        <div className="pt-4">
-          <NavDocuments />
-        </div>
-      </nav>
-      
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
-        <NavUser />
-      </div>
-    </aside>
-  );
+    <Sidebar collapsible="offcanvas" {...props}>
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:!p-1.5"
+            >
+              <a href="#">
+                <ArrowUpCircleIcon className="h-5 w-5" />
+                <span className="text-base font-semibold">Acme Inc.</span>
+              </a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={data.navMain} />
+        <NavDocuments items={data.documents} />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
+      </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
+    </Sidebar>
+  )
 }
