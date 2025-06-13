@@ -198,7 +198,16 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+            className={cn(
+              "w-[--sidebar-width] p-0 [&>button]:hidden",
+              // Force dark theme colors for mobile with proper hover states
+              "bg-[hsl(240_5.9%_10%)] text-[hsl(240_4.8%_95.9%)] border-[hsl(240_3.7%_15.9%)]",
+              // Override any conflicting styles
+              "[&_*]:text-[hsl(240_4.8%_95.9%)]",
+              // Fix button hover states to use dark theme colors
+              "[&_button:hover]:bg-[hsl(240_3.7%_15.9%)] [&_button:hover]:text-[hsl(240_4.8%_95.9%)]",
+              "[&_[data-sidebar=menu-button]:hover]:bg-[hsl(240_3.7%_15.9%)] [&_[data-sidebar=menu-button]:hover]:text-[hsl(240_4.8%_95.9%)]"
+            )}
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -206,7 +215,9 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
-            <div className="flex h-full w-full flex-col">{children}</div>
+            <div className="flex h-full w-full flex-col bg-[hsl(240_5.9%_10%)] text-[hsl(240_4.8%_95.9%)]">
+              {children}
+            </div>
           </SheetContent>
         </Sheet>
       )
