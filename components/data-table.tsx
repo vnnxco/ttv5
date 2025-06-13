@@ -677,6 +677,7 @@ const chartConfig = {
 
 function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
   const isMobile = useIsMobile()
+  const titleId = React.useId()
 
   return (
     <Sheet>
@@ -685,8 +686,8 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
           {item.header}
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="flex flex-col w-full sm:max-w-md">
-        <SheetTitle>{item.header}</SheetTitle>
+      <SheetContent side="right" className="flex flex-col w-full sm:max-w-md" aria-labelledby={titleId}>
+        <SheetTitle id={titleId}>{item.header}</SheetTitle>
         <SheetHeader className="gap-1">
           <SheetDescription>
             Showing total visitors for the last 6 months
