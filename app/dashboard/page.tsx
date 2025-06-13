@@ -10,11 +10,7 @@ export default function Page() {
       <SidebarInset className="overflow-hidden">
         <SiteHeader />
         <div className="flex flex-1 flex-col min-h-0 overflow-hidden">
-          <div className="flex flex-1 flex-col gap-4 md:gap-6 overflow-y-auto overflow-x-hidden">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 w-full min-w-0">
-              <AiChat />
-            </div>
-          </div>
+          <AiChat />
         </div>
       </SidebarInset>
     </SidebarProvider>

@@ -54,112 +54,117 @@ export function AiChat() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[600px] w-full max-w-4xl mx-auto px-4 py-8">
-      {/* Main heading */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-medium text-white mb-8">
-          How can I help you, Tails?
-        </h1>
-        
-        {/* Quick action buttons */}
-        <div className="flex items-center justify-center gap-6 mb-12">
-          {quickActions.map((action) => (
-            <Button
-              key={action.label}
-              variant="ghost"
-              className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+    <div className="flex flex-col h-full w-full">
+      {/* Main content area - scrollable */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 overflow-y-auto">
+        {/* Main heading */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-medium text-white mb-8">
+            How can I help you, Tails?
+          </h1>
+          
+          {/* Quick action buttons */}
+          <div className="flex items-center justify-center gap-6 mb-12">
+            {quickActions.map((action) => (
+              <Button
+                key={action.label}
+                variant="ghost"
+                className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                <action.icon className={`h-4 w-4 ${action.color}`} />
+                {action.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Suggested questions */}
+        <div className="w-full max-w-2xl space-y-3">
+          {suggestedQuestions.map((question, index) => (
+            <Card
+              key={index}
+              className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors cursor-pointer"
+              onClick={() => handleQuestionClick(question)}
             >
-              <action.icon className={`h-4 w-4 ${action.color}`} />
-              {action.label}
-            </Button>
+              <div className="p-4">
+                <p className="text-gray-300 text-sm">{question}</p>
+              </div>
+            </Card>
           ))}
         </div>
       </div>
 
-      {/* Suggested questions */}
-      <div className="w-full max-w-2xl mb-8 space-y-3">
-        {suggestedQuestions.map((question, index) => (
-          <Card
-            key={index}
-            className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors cursor-pointer"
-            onClick={() => handleQuestionClick(question)}
-          >
-            <div className="p-4">
-              <p className="text-gray-300 text-sm">{question}</p>
+      {/* Chat input - sticky at bottom */}
+      <div className="flex-shrink-0 w-full border-t border-gray-700 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+          <form onSubmit={handleSubmit} className="relative">
+            <div className="relative">
+              <Input
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Type your message here..."
+                className="w-full bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-400 pr-24 py-6 text-base rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10"
+                >
+                  <PaperclipIcon className="h-4 w-4" />
+                </Button>
+                <Button
+                  type="submit"
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10"
+                  disabled={!message.trim()}
+                >
+                  <SendIcon className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
-          </Card>
-        ))}
-      </div>
+          </form>
 
-      {/* Chat input */}
-      <div className="w-full max-w-4xl">
-        <form onSubmit={handleSubmit} className="relative">
-          <div className="relative">
-            <Input
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Type your message here..."
-              className="w-full bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-400 pr-24 py-6 text-base rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+          {/* Bottom controls */}
+          <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center gap-2">
+              <Select value={selectedModel} onValueChange={setSelectedModel}>
+                <SelectTrigger className="w-48 bg-transparent border-gray-700 text-gray-300 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-800 border-gray-700">
+                  <SelectItem value="gemini-2.5-flash" className="text-gray-300">
+                    Gemini 2.5 Flash
+                  </SelectItem>
+                  <SelectItem value="gpt-4" className="text-gray-300">
+                    GPT-4
+                  </SelectItem>
+                  <SelectItem value="claude-3" className="text-gray-300">
+                    Claude 3
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              
               <Button
-                type="button"
                 variant="ghost"
-                size="icon"
-                className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10"
+                size="sm"
+                className="text-gray-400 hover:text-white hover:bg-white/10"
               >
-                <PaperclipIcon className="h-4 w-4" />
-              </Button>
-              <Button
-                type="submit"
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 text-gray-400 hover:text-white hover:bg-white/10"
-                disabled={!message.trim()}
-              >
-                <SendIcon className="h-4 w-4" />
+                <SearchIcon className="h-4 w-4 mr-2" />
+                Search
               </Button>
             </div>
-          </div>
-        </form>
 
-        {/* Bottom controls */}
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex items-center gap-2">
-            <Select value={selectedModel} onValueChange={setSelectedModel}>
-              <SelectTrigger className="w-48 bg-transparent border-gray-700 text-gray-300 text-sm">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="bg-gray-800 border-gray-700">
-                <SelectItem value="gemini-2.5-flash" className="text-gray-300">
-                  Gemini 2.5 Flash
-                </SelectItem>
-                <SelectItem value="gpt-4" className="text-gray-300">
-                  GPT-4
-                </SelectItem>
-                <SelectItem value="claude-3" className="text-gray-300">
-                  Claude 3
-                </SelectItem>
-              </SelectContent>
-            </Select>
-            
             <Button
               variant="ghost"
-              size="sm"
+              size="icon"
               className="text-gray-400 hover:text-white hover:bg-white/10"
             >
-              <SearchIcon className="h-4 w-4 mr-2" />
-              Search
+              <SendIcon className="h-4 w-4" />
             </Button>
           </div>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-gray-400 hover:text-white hover:bg-white/10"
-          >
-            <SendIcon className="h-4 w-4" />
-          </Button>
         </div>
       </div>
     </div>
