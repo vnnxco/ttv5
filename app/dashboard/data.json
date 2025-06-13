@@ -1,0 +1,122 @@
+{
+  "analytics": {
+    "totalUsers": 12543,
+    "activeUsers": 8924,
+    "revenue": 156780,
+    "conversion": 3.2,
+    "growth": 12.5
+  },
+  "chartData": [
+    { "month": "Jan", "users": 4200, "revenue": 24000, "conversion": 2.8 },
+    { "month": "Feb", "users": 4800, "revenue": 28500, "conversion": 3.1 },
+    { "month": "Mar", "users": 5200, "revenue": 32000, "conversion": 3.4 },
+    { "month": "Apr", "users": 6100, "revenue": 38500, "conversion": 3.2 },
+    { "month": "May", "users": 7200, "revenue": 42000, "conversion": 3.6 },
+    { "month": "Jun", "users": 8500, "revenue": 48000, "conversion": 3.8 },
+    { "month": "Jul", "users": 9200, "revenue": 52000, "conversion": 4.1 },
+    { "month": "Aug", "users": 10100, "revenue": 58000, "conversion": 3.9 },
+    { "month": "Sep", "users": 11200, "revenue": 62000, "conversion": 4.2 },
+    { "month": "Oct", "users": 12000, "revenue": 68000, "conversion": 4.5 },
+    { "month": "Nov", "users": 12800, "revenue": 72000, "conversion": 4.3 },
+    { "month": "Dec", "users": 13500, "revenue": 78000, "conversion": 4.7 }
+  ],
+  "recentTransactions": [
+    {
+      "id": "TXN-001",
+      "customer": "John Smith",
+      "amount": 1250.00,
+      "status": "completed",
+      "date": "2024-01-15",
+      "type": "subscription"
+    },
+    {
+      "id": "TXN-002",
+      "customer": "Sarah Johnson",
+      "amount": 850.00,
+      "status": "pending",
+      "date": "2024-01-14",
+      "type": "one-time"
+    },
+    {
+      "id": "TXN-003",
+      "customer": "Michael Brown",
+      "amount": 2100.00,
+      "status": "completed",
+      "date": "2024-01-13",
+      "type": "subscription"
+    },
+    {
+      "id": "TXN-004",
+      "customer": "Emily Davis",
+      "amount": 675.00,
+      "status": "failed",
+      "date": "2024-01-12",
+      "type": "one-time"
+    },
+    {
+      "id": "TXN-005",
+      "customer": "Robert Wilson",
+      "amount": 1800.00,
+      "status": "completed",
+      "date": "2024-01-11",
+      "type": "subscription"
+    }
+  ],
+  "topProducts": [
+    {
+      "name": "Premium Plan",
+      "sales": 1234,
+      "revenue": 98720,
+      "growth": 15.2
+    },
+    {
+      "name": "Basic Plan",
+      "sales": 2156,
+      "revenue": 64680,
+      "growth": 8.7
+    },
+    {
+      "name": "Enterprise Plan",
+      "sales": 567,
+      "revenue": 113400,
+      "growth": 22.1
+    },
+    {
+      "name": "Starter Plan",
+      "sales": 3421,
+      "revenue": 34210,
+      "growth": 5.3
+    }
+  ],
+  "userActivity": [
+    { "time": "00:00", "active": 1200 },
+    { "time": "04:00", "active": 800 },
+    { "time": "08:00", "active": 2400 },
+    { "time": "12:00", "active": 3200 },
+    { "time": "16:00", "active": 2800 },
+    { "time": "20:00", "active": 2100 }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "title": "New user registration",
+      "message": "Sarah Johnson has joined your platform",
+      "time": "2 minutes ago",
+      "type": "user"
+    },
+    {
+      "id": 2,
+      "title": "Payment received",
+      "message": "Premium subscription payment of $1,250 received",
+      "time": "15 minutes ago",
+      "type": "payment"
+    },
+    {
+      "id": 3,
+      "title": "System update",
+      "message": "Maintenance window scheduled for tonight at 2 AM",
+      "time": "1 hour ago",
+      "type": "system"
+    }
+  ]
+}
