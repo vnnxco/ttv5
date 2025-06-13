@@ -686,8 +686,8 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="flex flex-col w-full sm:max-w-md">
+        <SheetTitle>{item.header}</SheetTitle>
         <SheetHeader className="gap-1">
-          <SheetTitle>{item.header}</SheetTitle>
           <SheetDescription>
             Showing total visitors for the last 6 months
           </SheetDescription>
