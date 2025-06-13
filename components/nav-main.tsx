@@ -1,48 +1,58 @@
-import React from 'react';
-import { 
-  LayoutDashboard, 
-  BarChart3, 
-  Users, 
-  Settings, 
-  CreditCard, 
-  ShoppingBag 
-} from 'lucide-react';
+"use client"
 
-export function NavMain() {
-  const navItems = [
-    { name: 'Dashboard', icon: LayoutDashboard, current: true, href: '#' },
-    { name: 'Analytics', icon: BarChart3, current: false, href: '#' },
-    { name: 'Customers', icon: Users, current: false, href: '#' },
-    { name: 'Products', icon: ShoppingBag, current: false, href: '#' },
-    { name: 'Billing', icon: CreditCard, current: false, href: '#' },
-    { name: 'Settings', icon: Settings, current: false, href: '#' }
-  ];
+import { MailIcon, PlusCircleIcon, type LucideIcon } from "lucide-react"
 
+import { Button } from '@/components/ui/button'
+import {
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar'
+
+export function NavMain({
+  items,
+}: {
+  items: {
+    title: string
+    url: string
+    icon?: LucideIcon
+  }[]
+}) {
   return (
-    <div className="space-y-1">
-      {navItems.map((item) => {
-        const Icon = item.icon;
-        return (
-          <a
-            key={item.name}
-            href={item.href}
-            className={`group flex items-center px-3 py-2 text-sm font-medium rounded-md ${
-              item.current
-                ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-700'
-                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-            }`}
-          >
-            <Icon
-              className={`mr-3 h-5 w-5 ${
-                item.current 
-                  ? 'text-blue-500' 
-                  : 'text-gray-400 group-hover:text-gray-500'
-              }`}
-            />
-            {item.name}
-          </a>
-        );
-      })}
-    </div>
-  );
+    <SidebarGroup>
+      <SidebarGroupContent className="flex flex-col gap-2">
+        <SidebarMenu>
+          <SidebarMenuItem className="flex items-center gap-2">
+            <SidebarMenuButton
+              tooltip="Quick Create"
+              className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
+            >
+              <PlusCircleIcon />
+              <span>Quick Create</span>
+            </SidebarMenuButton>
+            <Button
+              size="icon"
+              className="h-9 w-9 shrink-0 group-data-[collapsible=icon]:opacity-0"
+              variant="outline"
+            >
+              <MailIcon />
+              <span className="sr-only">Inbox</span>
+            </Button>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        <SidebarMenu>
+          {items.map((item) => (
+            <SidebarMenuItem key={item.title}>
+              <SidebarMenuButton tooltip={item.title}>
+                {item.icon && <item.icon />}
+                <span>{item.title}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>
+  )
 }
