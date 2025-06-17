@@ -4,7 +4,7 @@ import DashboardPage from '../app/dashboard/page';
 
 function App() {
   return (
-    <div className="min-h-screen bg-sidebar">
+    <div className="min-h-screen bg-[hsl(240_5.9%_10%)]">
       <ThemeProvider defaultTheme="dark" attribute="class">
         <DashboardPage />
       </ThemeProvider>
