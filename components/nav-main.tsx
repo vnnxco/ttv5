@@ -20,6 +20,7 @@ export function NavMain({
     url: string
     icon?: LucideIcon
     isActive?: boolean
+    onClick?: () => void
   }[]
 }) {
   const { isMobile } = useSidebar()
@@ -56,6 +57,7 @@ export function NavMain({
               <SidebarMenuButton 
                 tooltip={item.title}
                 isActive={item.isActive}
+                onClick={item.onClick}
               >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>

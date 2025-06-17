@@ -34,125 +34,136 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Home",
-      url: "#",
-      icon: HomeIcon,
-      isActive: true,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: ListIcon,
-    },
-    {
-      title: "Agents",
-      url: "#",
-      icon: BotIcon,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: FolderIcon,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: UsersIcon,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: CameraIcon,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: FileTextIcon,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: FileCodeIcon,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: SettingsIcon,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: HelpCircleIcon,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: SearchIcon,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: DatabaseIcon,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: ClipboardListIcon,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: FileIcon,
-    },
-  ],
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  currentView?: 'home' | 'chat'
+  onNavigate?: (view: 'home' | 'chat') => void
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ currentView = 'home', onNavigate, ...props }: AppSidebarProps) {
+  const data = {
+    user: {
+      name: "shadcn",
+      email: "m@example.com",
+      avatar: "/avatars/shadcn.jpg",
+    },
+    navMain: [
+      {
+        title: "Home",
+        url: "#",
+        icon: HomeIcon,
+        isActive: currentView === 'home',
+        onClick: () => onNavigate?.('home'),
+      },
+      {
+        title: "Projects",
+        url: "#",
+        icon: ListIcon,
+        isActive: false,
+      },
+      {
+        title: "Agents",
+        url: "#",
+        icon: BotIcon,
+        isActive: currentView === 'chat',
+        onClick: () => onNavigate?.('chat'),
+      },
+      {
+        title: "Projects",
+        url: "#",
+        icon: FolderIcon,
+        isActive: false,
+      },
+      {
+        title: "Team",
+        url: "#",
+        icon: UsersIcon,
+        isActive: false,
+      },
+    ],
+    navClouds: [
+      {
+        title: "Capture",
+        icon: CameraIcon,
+        isActive: true,
+        url: "#",
+        items: [
+          {
+            title: "Active Proposals",
+            url: "#",
+          },
+          {
+            title: "Archived",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Proposal",
+        icon: FileTextIcon,
+        url: "#",
+        items: [
+          {
+            title: "Active Proposals",
+            url: "#",
+          },
+          {
+            title: "Archived",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Prompts",
+        icon: FileCodeIcon,
+        url: "#",
+        items: [
+          {
+            title: "Active Proposals",
+            url: "#",
+          },
+          {
+            title: "Archived",
+            url: "#",
+          },
+        ],
+      },
+    ],
+    navSecondary: [
+      {
+        title: "Settings",
+        url: "#",
+        icon: SettingsIcon,
+      },
+      {
+        title: "Get Help",
+        url: "#",
+        icon: HelpCircleIcon,
+      },
+      {
+        title: "Search",
+        url: "#",
+        icon: SearchIcon,
+      },
+    ],
+    documents: [
+      {
+        name: "Data Library",
+        url: "#",
+        icon: DatabaseIcon,
+      },
+      {
+        name: "Reports",
+        url: "#",
+        icon: ClipboardListIcon,
+      },
+      {
+        name: "Word Assistant",
+        url: "#",
+        icon: FileIcon,
+      },
+    ],
+  }
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
