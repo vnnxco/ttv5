@@ -65,7 +65,7 @@ const libraryItems = [
     title: "Tagalog and Filipino Narrator",
     description: "Namie Voice is a captivating narrator, blending warmth and...",
     avatar: "🥥",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-orange-500"
   },
   {
     id: 2,
@@ -73,7 +73,7 @@ const libraryItems = [
     title: "The Good Doctor Storyteller",
     description: "Dok Jim's voice exudes warmth, empathy, and wisdom, perfect for...",
     avatar: "🩺",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-blue-500"
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ const libraryItems = [
     title: "Filipino Teacher and Educator of AI",
     description: "Prof. Francisco is a passionate AI educator whose voice exudes...",
     avatar: "🌱",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-green-500"
   },
   {
     id: 4,
@@ -89,7 +89,7 @@ const libraryItems = [
     title: "Voice of Hope & the Unheard",
     description: "He sounds like a brave Super VoiceMaster with a heart full of...",
     avatar: "🌸",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-pink-500"
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ const libraryItems = [
     title: "A 45-Year-Old Storyteller of...",
     description: "Tiya Maria MaKuwento is a seasoned 45-year-old storyteller...",
     avatar: "🌸",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-pink-500"
   }
 ]
 
@@ -107,21 +107,21 @@ const voiceActions = [
     title: "Voice Design",
     description: "Design an entirely new voice from a text prompt",
     color: "text-pink-400",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-pink-500"
   },
   {
     icon: CopyIcon,
     title: "Clone your Voice",
     description: "Create a realistic digital clone of your voice",
     color: "text-green-400",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-green-500"
   },
   {
     icon: LibraryIcon,
     title: "Voice Collections",
     description: "Curated AI voices for every use case",
     color: "text-blue-400",
-    bgColor: "bg-sidebar"
+    bgColor: "bg-blue-500"
   }
 ]
 
@@ -139,7 +139,7 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
   return (
     <div className="flex flex-col h-full w-full max-w-full overflow-hidden">
       {/* Main content area - scrollable */}
-      <div className="flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 py-6">
+      <div className="flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 lg:px-16 xl:px-24 py-6">
         {/* Header Section */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
@@ -168,21 +168,20 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
             </div>
           </div>
 
-          {/* Project Types Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          {/* Project Types Grid - Mobile: 2 rows x 3 cols, Desktop: 1 row x 6 cols */}
+          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
             {projectTypes.map((type, index) => (
-              <Card
-                key={index}
-                onClick={() => handleProjectTypeClick(type)}
-                className={`bg-sidebar border-0 hover:bg-sidebar-accent transition-colors p-6 aspect-square flex flex-col items-center justify-center text-center ${
-                  type.isClickable ? 'cursor-pointer' : 'cursor-default'
-                }`}
-              >
-                <div className={`${type.bgColor} p-3 rounded-lg mb-3`}>
-                  <type.icon className={`h-6 w-6 ${type.color}`} />
-                </div>
-                <p className="text-sm text-sidebar-foreground font-medium">{type.title}</p>
-              </Card>
+              <div key={index} className="flex flex-col items-center">
+                <Card
+                  onClick={() => handleProjectTypeClick(type)}
+                  className={`bg-sidebar border-0 hover:bg-sidebar-accent transition-colors p-6 aspect-square flex items-center justify-center w-full ${
+                    type.isClickable ? 'cursor-pointer' : 'cursor-default'
+                  }`}
+                >
+                  <type.icon className={`h-8 w-8 ${type.color}`} />
+                </Card>
+                <p className="text-sm text-white font-medium mt-3 text-center">{type.title}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -227,7 +226,7 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
                 >
                   <div className="flex items-start gap-4">
                     <div className={`${action.bgColor} p-3 rounded-lg flex-shrink-0`}>
-                      <action.icon className={`h-6 w-6 ${action.color}`} />
+                      <action.icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sidebar-foreground font-semibold mb-2">{action.title}</h3>
