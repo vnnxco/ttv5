@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { 
-  PlusIcon,
   MicIcon,
   BookOpenIcon,
   MessageSquareIcon,
@@ -22,39 +21,39 @@ const projectTypes = [
   { 
     icon: MicIcon, 
     title: "Instant speech", 
-    color: "text-blue-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-blue-500",
+    iconColor: "text-white"
   },
   { 
     icon: BookOpenIcon, 
     title: "Audiobook", 
-    color: "text-red-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-red-500",
+    iconColor: "text-white"
   },
   { 
     icon: MessageSquareIcon, 
     title: "Conversational AI", 
-    color: "text-purple-400",
-    bgColor: "bg-gray-700/50",
+    iconBg: "bg-purple-500",
+    iconColor: "text-white",
     isClickable: true
   },
   { 
     icon: RadioIcon, 
     title: "Podcast", 
-    color: "text-orange-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-orange-500",
+    iconColor: "text-white"
   },
   { 
     icon: VolumeXIcon, 
     title: "Sound effect", 
-    color: "text-blue-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-blue-500",
+    iconColor: "text-white"
   },
   { 
     icon: VideoIcon, 
     title: "Dubbed video", 
-    color: "text-green-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-green-500",
+    iconColor: "text-white"
   }
 ]
 
@@ -65,7 +64,7 @@ const libraryItems = [
     title: "Tagalog and Filipino Narrator",
     description: "Namie Voice is a captivating narrator, blending warmth and...",
     avatar: "🥥",
-    bgColor: "bg-gray-600" // Changed from bg-orange-500
+    bgColor: "bg-orange-500"
   },
   {
     id: 2,
@@ -73,7 +72,7 @@ const libraryItems = [
     title: "The Good Doctor Storyteller",
     description: "Dok Jim's voice exudes warmth, empathy, and wisdom, perfect for...",
     avatar: "🩺",
-    bgColor: "bg-gray-600" // Changed from bg-blue-500
+    bgColor: "bg-blue-500"
   },
   {
     id: 3,
@@ -81,7 +80,7 @@ const libraryItems = [
     title: "Filipino Teacher and Educator of AI",
     description: "Prof. Francisco is a passionate AI educator whose voice exudes...",
     avatar: "🌱",
-    bgColor: "bg-gray-600" // Changed from bg-green-500
+    bgColor: "bg-green-500"
   },
   {
     id: 4,
@@ -89,7 +88,7 @@ const libraryItems = [
     title: "Voice of Hope & the Unheard",
     description: "He sounds like a brave Super VoiceMaster with a heart full of...",
     avatar: "🌸",
-    bgColor: "bg-gray-600" // Changed from bg-pink-500
+    bgColor: "bg-pink-500"
   },
   {
     id: 5,
@@ -97,7 +96,7 @@ const libraryItems = [
     title: "A 45-Year-Old Storyteller of...",
     description: "Tiya Maria MaKuwento is a seasoned 45-year-old storyteller...",
     avatar: "🌸",
-    bgColor: "bg-gray-600" // Changed from bg-pink-500
+    bgColor: "bg-pink-500"
   }
 ]
 
@@ -106,22 +105,22 @@ const voiceActions = [
     icon: SparklesIcon,
     title: "Voice Design",
     description: "Design an entirely new voice from a text prompt",
-    color: "text-pink-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-pink-500",
+    iconColor: "text-white"
   },
   {
     icon: CopyIcon,
     title: "Clone your Voice",
     description: "Create a realistic digital clone of your voice",
-    color: "text-green-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-green-500",
+    iconColor: "text-white"
   },
   {
     icon: LibraryIcon,
     title: "Voice Collections",
     description: "Curated AI voices for every use case",
-    color: "text-blue-400",
-    bgColor: "bg-gray-700/50"
+    iconBg: "bg-blue-500",
+    iconColor: "text-white"
   }
 ]
 
@@ -137,30 +136,36 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
   }
 
   return (
-    <div className="flex flex-col h-full w-full max-w-full overflow-hidden">
+    <div className="flex flex-col h-full w-full max-w-full overflow-hidden bg-black">
+      {/* Top Banner */}
+      <div className="flex items-center justify-between px-6 py-3 border-b border-gray-800">
+        <div className="flex items-center gap-2">
+          <span className="bg-white text-black text-xs px-2 py-1 rounded-full font-medium">New</span>
+          <span className="text-white text-sm">Become an affiliate, earn with every referral</span>
+          <span className="text-gray-400">›</span>
+        </div>
+        <Button variant="ghost" size="sm" className="text-white hover:text-gray-300">
+          <SettingsIcon className="h-4 w-4" />
+        </Button>
+      </div>
+
       {/* Main content area - scrollable */}
-      <div className="flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 py-6">
+      <div className="flex-1 overflow-y-auto min-h-0 px-6 py-6">
         {/* Header Section */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <p className="text-sm text-gray-400 mb-1">My Workspace</p>
-              <h1 className="text-2xl sm:text-3xl font-medium text-white">
-                Good afternoon, Tails
+              <p className="text-gray-400 text-sm mb-1">My Workspace</p>
+              <h1 className="text-white text-3xl font-medium">
+                Good afternoon, Ivann
               </h1>
             </div>
             <div className="flex items-center gap-3">
+              <span className="text-gray-400 text-sm">Have a question?</span>
               <Button
-                variant="ghost"
+                variant="default"
                 size="sm"
-                className="text-gray-400 hover:text-white"
-              >
-                <SettingsIcon className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600 hover:border-gray-500"
+                className="bg-blue-600 hover:bg-blue-700 text-white"
               >
                 <MessageSquareIcon className="h-4 w-4 mr-2" />
                 Talk to El
@@ -169,44 +174,44 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
           </div>
 
           {/* Project Types Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          <div className="grid grid-cols-6 gap-4 mb-12">
             {projectTypes.map((type, index) => (
               <Card
                 key={index}
                 onClick={() => handleProjectTypeClick(type)}
-                className={`bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors p-6 aspect-square flex flex-col items-center justify-center text-center ${
+                className={`bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors p-6 aspect-square flex flex-col items-center justify-center text-center ${
                   type.isClickable ? 'cursor-pointer' : 'cursor-default'
                 }`}
               >
-                <div className={`${type.bgColor} p-3 rounded-lg mb-3`}>
-                  <type.icon className={`h-6 w-6 ${type.color}`} />
+                <div className={`${type.iconBg} p-4 rounded-2xl mb-4`}>
+                  <type.icon className={`h-8 w-8 ${type.iconColor}`} />
                 </div>
-                <p className="text-sm text-gray-300 font-medium">{type.title}</p>
+                <p className="text-white text-sm font-medium">{type.title}</p>
               </Card>
             ))}
           </div>
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-12">
           {/* Latest from the library */}
           <div>
-            <h2 className="text-xl font-semibold text-white mb-6">Latest from the library</h2>
+            <h2 className="text-white text-xl font-medium mb-6">Latest from the library</h2>
             <div className="space-y-4">
               {libraryItems.map((item) => (
                 <Card
                   key={item.id}
-                  className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors cursor-pointer p-4"
+                  className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer p-4"
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`${item.bgColor} w-10 h-10 rounded-full flex items-center justify-center text-white font-medium flex-shrink-0`}>
+                  <div className="flex items-start gap-4">
+                    <div className={`${item.bgColor} w-12 h-12 rounded-full flex items-center justify-center text-white text-lg flex-shrink-0`}>
                       {item.avatar}
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-white font-medium mb-1">
                         {item.name} · {item.title}
                       </h3>
-                      <p className="text-gray-400 text-sm line-clamp-2">
+                      <p className="text-gray-400 text-sm">
                         {item.description}
                       </p>
                     </div>
@@ -218,19 +223,19 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
 
           {/* Create or clone a voice */}
           <div>
-            <h2 className="text-xl font-semibold text-white mb-6">Create or clone a voice</h2>
+            <h2 className="text-white text-xl font-medium mb-6">Create or clone a voice</h2>
             <div className="space-y-4">
               {voiceActions.map((action, index) => (
                 <Card
                   key={index}
-                  className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors cursor-pointer p-6"
+                  className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer p-6"
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`${action.bgColor} p-3 rounded-lg flex-shrink-0`}>
-                      <action.icon className={`h-6 w-6 ${action.color}`} />
+                    <div className={`${action.iconBg} p-3 rounded-xl flex-shrink-0`}>
+                      <action.icon className={`h-6 w-6 ${action.iconColor}`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-white font-semibold mb-2">{action.title}</h3>
+                      <h3 className="text-white font-medium mb-2">{action.title}</h3>
                       <p className="text-gray-400 text-sm">{action.description}</p>
                     </div>
                   </div>
