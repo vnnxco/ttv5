@@ -65,7 +65,7 @@ const libraryItems = [
     title: "Tagalog and Filipino Narrator",
     description: "Namie Voice is a captivating narrator, blending warmth and...",
     avatar: "🥥",
-    bgColor: "bg-orange-500"
+    bgColor: "bg-gray-600" // Changed from bg-orange-500
   },
   {
     id: 2,
@@ -73,7 +73,7 @@ const libraryItems = [
     title: "The Good Doctor Storyteller",
     description: "Dok Jim's voice exudes warmth, empathy, and wisdom, perfect for...",
     avatar: "🩺",
-    bgColor: "bg-blue-500"
+    bgColor: "bg-gray-600" // Changed from bg-blue-500
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ const libraryItems = [
     title: "Filipino Teacher and Educator of AI",
     description: "Prof. Francisco is a passionate AI educator whose voice exudes...",
     avatar: "🌱",
-    bgColor: "bg-green-500"
+    bgColor: "bg-gray-600" // Changed from bg-green-500
   },
   {
     id: 4,
@@ -89,7 +89,7 @@ const libraryItems = [
     title: "Voice of Hope & the Unheard",
     description: "He sounds like a brave Super VoiceMaster with a heart full of...",
     avatar: "🌸",
-    bgColor: "bg-pink-500"
+    bgColor: "bg-gray-600" // Changed from bg-pink-500
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ const libraryItems = [
     title: "A 45-Year-Old Storyteller of...",
     description: "Tiya Maria MaKuwento is a seasoned 45-year-old storyteller...",
     avatar: "🌸",
-    bgColor: "bg-pink-500"
+    bgColor: "bg-gray-600" // Changed from bg-pink-500
   }
 ]
 
