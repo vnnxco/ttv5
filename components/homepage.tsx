@@ -23,37 +23,38 @@ const projectTypes = [
     icon: MicIcon, 
     title: "Instant speech", 
     color: "text-blue-400",
-    bgColor: "bg-blue-500/10"
+    bgColor: "bg-gray-700/50"
   },
   { 
     icon: BookOpenIcon, 
     title: "Audiobook", 
     color: "text-red-400",
-    bgColor: "bg-red-500/10"
+    bgColor: "bg-gray-700/50"
   },
   { 
     icon: MessageSquareIcon, 
     title: "Conversational AI", 
     color: "text-purple-400",
-    bgColor: "bg-purple-500/10"
+    bgColor: "bg-gray-700/50",
+    isClickable: true
   },
   { 
     icon: RadioIcon, 
     title: "Podcast", 
     color: "text-orange-400",
-    bgColor: "bg-orange-500/10"
+    bgColor: "bg-gray-700/50"
   },
   { 
     icon: VolumeXIcon, 
     title: "Sound effect", 
     color: "text-blue-400",
-    bgColor: "bg-blue-500/10"
+    bgColor: "bg-gray-700/50"
   },
   { 
     icon: VideoIcon, 
     title: "Dubbed video", 
     color: "text-green-400",
-    bgColor: "bg-green-500/10"
+    bgColor: "bg-gray-700/50"
   }
 ]
 
@@ -106,21 +107,21 @@ const voiceActions = [
     title: "Voice Design",
     description: "Design an entirely new voice from a text prompt",
     color: "text-pink-400",
-    bgColor: "bg-pink-500/10"
+    bgColor: "bg-gray-700/50"
   },
   {
     icon: CopyIcon,
     title: "Clone your Voice",
     description: "Create a realistic digital clone of your voice",
     color: "text-green-400",
-    bgColor: "bg-green-500/10"
+    bgColor: "bg-gray-700/50"
   },
   {
     icon: LibraryIcon,
     title: "Voice Collections",
     description: "Curated AI voices for every use case",
     color: "text-blue-400",
-    bgColor: "bg-blue-500/10"
+    bgColor: "bg-gray-700/50"
   }
 ]
 
@@ -129,6 +130,12 @@ interface HomepageProps {
 }
 
 export function Homepage({ onNavigateToChat }: HomepageProps) {
+  const handleProjectTypeClick = (type: any) => {
+    if (type.isClickable && type.title === "Conversational AI") {
+      onNavigateToChat()
+    }
+  }
+
   return (
     <div className="flex flex-col h-full w-full max-w-full overflow-hidden">
       {/* Main content area - scrollable */}
@@ -151,10 +158,9 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
                 <SettingsIcon className="h-4 w-4" />
               </Button>
               <Button
-                onClick={onNavigateToChat}
                 variant="outline"
                 size="sm"
-                className="bg-blue-600 border-blue-600 text-white hover:bg-blue-700 hover:border-blue-700"
+                className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600 hover:border-gray-500"
               >
                 <MessageSquareIcon className="h-4 w-4 mr-2" />
                 Talk to El
@@ -167,7 +173,10 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
             {projectTypes.map((type, index) => (
               <Card
                 key={index}
-                className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors cursor-pointer p-6 aspect-square flex flex-col items-center justify-center text-center"
+                onClick={() => handleProjectTypeClick(type)}
+                className={`bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors p-6 aspect-square flex flex-col items-center justify-center text-center ${
+                  type.isClickable ? 'cursor-pointer' : 'cursor-default'
+                }`}
               >
                 <div className={`${type.bgColor} p-3 rounded-lg mb-3`}>
                   <type.icon className={`h-6 w-6 ${type.color}`} />

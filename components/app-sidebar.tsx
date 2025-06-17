@@ -64,8 +64,8 @@ export function AppSidebar({ currentView = 'home', onNavigate, ...props }: AppSi
         title: "Agents",
         url: "#",
         icon: BotIcon,
-        isActive: currentView === 'chat',
-        onClick: () => onNavigate?.('chat'),
+        isActive: false,
+        // Removed onClick to prevent navigation
       },
       {
         title: "Projects",
