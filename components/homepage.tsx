@@ -23,38 +23,38 @@ const projectTypes = [
     icon: MicIcon, 
     title: "Instant speech", 
     color: "text-blue-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   },
   { 
     icon: BookOpenIcon, 
     title: "Audiobook", 
     color: "text-red-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   },
   { 
     icon: MessageSquareIcon, 
     title: "Conversational AI", 
     color: "text-purple-400",
-    bgColor: "bg-gray-700/50",
+    bgColor: "bg-sidebar",
     isClickable: true
   },
   { 
     icon: RadioIcon, 
     title: "Podcast", 
     color: "text-orange-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   },
   { 
     icon: VolumeXIcon, 
     title: "Sound effect", 
     color: "text-blue-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   },
   { 
     icon: VideoIcon, 
     title: "Dubbed video", 
     color: "text-green-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   }
 ]
 
@@ -65,7 +65,7 @@ const libraryItems = [
     title: "Tagalog and Filipino Narrator",
     description: "Namie Voice is a captivating narrator, blending warmth and...",
     avatar: "🥥",
-    bgColor: "bg-gray-600" // Changed from bg-orange-500
+    bgColor: "bg-sidebar"
   },
   {
     id: 2,
@@ -73,7 +73,7 @@ const libraryItems = [
     title: "The Good Doctor Storyteller",
     description: "Dok Jim's voice exudes warmth, empathy, and wisdom, perfect for...",
     avatar: "🩺",
-    bgColor: "bg-gray-600" // Changed from bg-blue-500
+    bgColor: "bg-sidebar"
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ const libraryItems = [
     title: "Filipino Teacher and Educator of AI",
     description: "Prof. Francisco is a passionate AI educator whose voice exudes...",
     avatar: "🌱",
-    bgColor: "bg-gray-600" // Changed from bg-green-500
+    bgColor: "bg-sidebar"
   },
   {
     id: 4,
@@ -89,7 +89,7 @@ const libraryItems = [
     title: "Voice of Hope & the Unheard",
     description: "He sounds like a brave Super VoiceMaster with a heart full of...",
     avatar: "🌸",
-    bgColor: "bg-gray-600" // Changed from bg-pink-500
+    bgColor: "bg-sidebar"
   },
   {
     id: 5,
@@ -97,7 +97,7 @@ const libraryItems = [
     title: "A 45-Year-Old Storyteller of...",
     description: "Tiya Maria MaKuwento is a seasoned 45-year-old storyteller...",
     avatar: "🌸",
-    bgColor: "bg-gray-600" // Changed from bg-pink-500
+    bgColor: "bg-sidebar"
   }
 ]
 
@@ -107,21 +107,21 @@ const voiceActions = [
     title: "Voice Design",
     description: "Design an entirely new voice from a text prompt",
     color: "text-pink-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   },
   {
     icon: CopyIcon,
     title: "Clone your Voice",
     description: "Create a realistic digital clone of your voice",
     color: "text-green-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   },
   {
     icon: LibraryIcon,
     title: "Voice Collections",
     description: "Curated AI voices for every use case",
     color: "text-blue-400",
-    bgColor: "bg-gray-700/50"
+    bgColor: "bg-sidebar"
   }
 ]
 
@@ -174,14 +174,14 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
               <Card
                 key={index}
                 onClick={() => handleProjectTypeClick(type)}
-                className={`bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors p-6 aspect-square flex flex-col items-center justify-center text-center ${
+                className={`bg-sidebar border-0 hover:bg-sidebar-accent transition-colors p-6 aspect-square flex flex-col items-center justify-center text-center ${
                   type.isClickable ? 'cursor-pointer' : 'cursor-default'
                 }`}
               >
                 <div className={`${type.bgColor} p-3 rounded-lg mb-3`}>
                   <type.icon className={`h-6 w-6 ${type.color}`} />
                 </div>
-                <p className="text-sm text-gray-300 font-medium">{type.title}</p>
+                <p className="text-sm text-sidebar-foreground font-medium">{type.title}</p>
               </Card>
             ))}
           </div>
@@ -196,17 +196,17 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
               {libraryItems.map((item) => (
                 <Card
                   key={item.id}
-                  className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors cursor-pointer p-4"
+                  className="bg-sidebar border-0 hover:bg-sidebar-accent transition-colors cursor-pointer p-4"
                 >
                   <div className="flex items-start gap-3">
                     <div className={`${item.bgColor} w-10 h-10 rounded-full flex items-center justify-center text-white font-medium flex-shrink-0`}>
                       {item.avatar}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-white font-medium mb-1">
+                      <h3 className="text-sidebar-foreground font-medium mb-1">
                         {item.name} · {item.title}
                       </h3>
-                      <p className="text-gray-400 text-sm line-clamp-2">
+                      <p className="text-sidebar-foreground/70 text-sm line-clamp-2">
                         {item.description}
                       </p>
                     </div>
@@ -223,15 +223,15 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
               {voiceActions.map((action, index) => (
                 <Card
                   key={index}
-                  className="bg-gray-800/50 border-gray-700 hover:bg-gray-700/50 transition-colors cursor-pointer p-6"
+                  className="bg-sidebar border-0 hover:bg-sidebar-accent transition-colors cursor-pointer p-6"
                 >
                   <div className="flex items-start gap-4">
                     <div className={`${action.bgColor} p-3 rounded-lg flex-shrink-0`}>
                       <action.icon className={`h-6 w-6 ${action.color}`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-white font-semibold mb-2">{action.title}</h3>
-                      <p className="text-gray-400 text-sm">{action.description}</p>
+                      <h3 className="text-sidebar-foreground font-semibold mb-2">{action.title}</h3>
+                      <p className="text-sidebar-foreground/70 text-sm">{action.description}</p>
                     </div>
                   </div>
                 </Card>
