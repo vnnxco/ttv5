@@ -35,12 +35,13 @@ import {
 } from '@/components/ui/sidebar'
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
-  currentView?: 'home' | 'chat' | 'agents'
-  onNavigate?: (view: 'home' | 'chat' | 'agents') => void
+  currentView?: 'home' | 'chat' | 'agents' | 'projects'
+  onNavigate?: (view: 'home' | 'chat' | 'agents' | 'projects') => void
   onNavigateToChat?: () => void
+  onNavigateToProjects?: () => void
 }
 
-export function AppSidebar({ currentView = 'home', onNavigate, onNavigateToChat, ...props }: AppSidebarProps) {
+export function AppSidebar({ currentView = 'home', onNavigate, onNavigateToChat, onNavigateToProjects, ...props }: AppSidebarProps) {
   const data = {
     user: {
       name: "shadcn",
@@ -59,7 +60,8 @@ export function AppSidebar({ currentView = 'home', onNavigate, onNavigateToChat,
         title: "Projects",
         url: "#",
         icon: ListIcon,
-        isActive: false,
+        isActive: currentView === 'projects',
+        onClick: () => onNavigate?.('projects'),
       },
       {
         title: "Agents",
@@ -69,7 +71,7 @@ export function AppSidebar({ currentView = 'home', onNavigate, onNavigateToChat,
         onClick: () => onNavigate?.('agents'),
       },
       {
-        title: "Projects",
+        title: "Folders",
         url: "#",
         icon: FolderIcon,
         isActive: false,
