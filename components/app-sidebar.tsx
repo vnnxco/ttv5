@@ -12,11 +12,12 @@ import {
   FileTextIcon,
   FolderIcon,
   HelpCircleIcon,
-  LayoutDashboardIcon,
+  HomeIcon,
   ListIcon,
   SearchIcon,
   SettingsIcon,
   UsersIcon,
+  BotIcon,
 } from "lucide-react"
 
 import { NavDocuments } from '@/components/nav-documents'
@@ -41,19 +42,20 @@ const data = {
   },
   navMain: [
     {
-      title: "Dashboard",
+      title: "Home",
       url: "#",
-      icon: LayoutDashboardIcon,
+      icon: HomeIcon,
+      isActive: true,
     },
     {
-      title: "Lifecycle",
+      title: "Projects",
       url: "#",
       icon: ListIcon,
     },
     {
-      title: "Analytics",
+      title: "Agents",
       url: "#",
-      icon: BarChartIcon,
+      icon: BotIcon,
     },
     {
       title: "Projects",

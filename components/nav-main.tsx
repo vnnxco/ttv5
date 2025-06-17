@@ -19,6 +19,7 @@ export function NavMain({
     title: string
     url: string
     icon?: LucideIcon
+    isActive?: boolean
   }[]
 }) {
   const { isMobile } = useSidebar()
@@ -30,11 +31,7 @@ export function NavMain({
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
               tooltip="Quick Create"
-              className={
-                isMobile
-                  ? "min-w-8 bg-[hsl(217.2_91.2%_59.8%)] text-[hsl(240_5.9%_10%)] duration-200 ease-linear hover:bg-[hsl(217.2_91.2%_59.8%/0.9)] hover:text-[hsl(240_5.9%_10%)] active:bg-[hsl(217.2_91.2%_59.8%/0.9)] active:text-[hsl(240_5.9%_10%)]"
-                  : "min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
-              }
+              className="min-w-8 bg-white text-black duration-200 ease-linear hover:bg-white/90 hover:text-black active:bg-white/90 active:text-black"
             >
               <PlusCircleIcon />
               <span>Quick Create</span>
@@ -56,7 +53,10 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
+              <SidebarMenuButton 
+                tooltip={item.title}
+                isActive={item.isActive}
+              >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
               </SidebarMenuButton>
