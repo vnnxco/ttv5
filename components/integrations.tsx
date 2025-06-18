@@ -17,7 +17,9 @@ import {
   CreditCardIcon,
   CloudIcon,
   CodeIcon,
-  MoreVerticalIcon
+  MoreVerticalIcon,
+  EditIcon,
+  BookOpenIcon
 } from "lucide-react"
 
 import { Button } from '@/components/ui/button'
@@ -35,97 +37,105 @@ const integrations = [
   {
     id: 1,
     name: "Slack",
-    description: "Connect your AI agents to Slack channels for seamless team communication",
+    description: "Connect your AI agents to Slack channels for seamless team communication and automated responses.",
     category: "Communication",
     status: "connected",
     icon: MessageSquareIcon,
     color: "bg-purple-500",
     isEnabled: true,
-    setupTime: "2 minutes"
+    setupTime: "2 minutes",
+    popularity: "Most Popular"
   },
   {
     id: 2,
     name: "Stripe",
-    description: "Process payments and handle billing through your AI agents",
+    description: "Process payments and handle billing through your AI agents with secure payment processing.",
     category: "Payment",
     status: "available",
     icon: CreditCardIcon,
     color: "bg-blue-500",
     isEnabled: false,
-    setupTime: "5 minutes"
+    setupTime: "5 minutes",
+    popularity: "Trending"
   },
   {
     id: 3,
     name: "Google Calendar",
-    description: "Schedule meetings and manage appointments automatically",
+    description: "Schedule meetings and manage appointments automatically with intelligent calendar integration.",
     category: "Productivity",
     status: "connected",
     icon: CalendarIcon,
     color: "bg-green-500",
     isEnabled: true,
-    setupTime: "3 minutes"
+    setupTime: "3 minutes",
+    popularity: "Popular"
   },
   {
     id: 4,
     name: "Shopify",
-    description: "Integrate with your e-commerce store for order management",
+    description: "Integrate with your e-commerce store for order management and customer support automation.",
     category: "E-commerce",
     status: "available",
     icon: ShoppingCartIcon,
     color: "bg-orange-500",
     isEnabled: false,
-    setupTime: "10 minutes"
+    setupTime: "10 minutes",
+    popularity: "New"
   },
   {
     id: 5,
     name: "Gmail",
-    description: "Send and receive emails through your AI agents",
+    description: "Send and receive emails through your AI agents with smart email automation and responses.",
     category: "Communication",
     status: "connected",
     icon: MailIcon,
     color: "bg-red-500",
     isEnabled: true,
-    setupTime: "4 minutes"
+    setupTime: "4 minutes",
+    popularity: "Popular"
   },
   {
     id: 6,
     name: "AWS S3",
-    description: "Store and retrieve files from Amazon S3 buckets",
+    description: "Store and retrieve files from Amazon S3 buckets with seamless cloud storage integration.",
     category: "Storage",
     status: "available",
     icon: CloudIcon,
     color: "bg-yellow-500",
     isEnabled: false,
-    setupTime: "8 minutes"
+    setupTime: "8 minutes",
+    popularity: "Enterprise"
   },
   {
     id: 7,
     name: "PostgreSQL",
-    description: "Connect to PostgreSQL databases for data operations",
+    description: "Connect to PostgreSQL databases for advanced data operations and intelligent query processing.",
     category: "Database",
     status: "connected",
     icon: DatabaseIcon,
     color: "bg-indigo-500",
     isEnabled: false,
-    setupTime: "15 minutes"
+    setupTime: "15 minutes",
+    popularity: "Developer"
   },
   {
     id: 8,
     name: "Custom API",
-    description: "Build custom integrations with your own APIs",
+    description: "Build custom integrations with your own APIs using our flexible integration framework.",
     category: "Developer",
     status: "available",
     icon: CodeIcon,
     color: "bg-gray-500",
     isEnabled: false,
-    setupTime: "Variable"
+    setupTime: "Variable",
+    popularity: "Advanced"
   }
 ]
 
 const categories = [
   "All Categories",
   "Communication",
-  "Payment",
+  "Payment", 
   "Productivity",
   "E-commerce",
   "Storage",
@@ -174,6 +184,24 @@ export function Integrations() {
     )
   }
 
+  const getPopularityBadge = (popularity: string) => {
+    const colors = {
+      "Most Popular": "bg-purple-500/10 text-purple-500 border-purple-500/20",
+      "Trending": "bg-blue-500/10 text-blue-500 border-blue-500/20",
+      "Popular": "bg-green-500/10 text-green-500 border-green-500/20",
+      "New": "bg-orange-500/10 text-orange-500 border-orange-500/20",
+      "Enterprise": "bg-yellow-500/10 text-yellow-500 border-yellow-500/20",
+      "Developer": "bg-indigo-500/10 text-indigo-500 border-indigo-500/20",
+      "Advanced": "bg-red-500/10 text-red-500 border-red-500/20"
+    }
+    
+    return (
+      <Badge variant="outline" className={`text-xs ${colors[popularity as keyof typeof colors]}`}>
+        {popularity}
+      </Badge>
+    )
+  }
+
   return (
     <div className="flex flex-col h-full w-full max-w-full overflow-hidden bg-background">
       <div className="flex-1 overflow-y-auto min-h-0">
@@ -187,7 +215,7 @@ export function Integrations() {
                     Integrations
                   </h1>
                   <p className="text-gray-400">
-                    Connect your AI agents with external services and tools
+                    Connect your AI agents with external services and tools to extend their capabilities
                   </p>
                 </div>
                 <Button
@@ -275,96 +303,112 @@ export function Integrations() {
               </Card>
             </div>
 
-            {/* Integrations Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            {/* Integrations List */}
+            <div className="space-y-4">
               {filteredIntegrations.map((integration) => (
                 <Card
                   key={integration.id}
                   className="group bg-sidebar-accent border-sidebar-border hover:border-sidebar-foreground/20 transition-all duration-200 p-6"
                 >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`${integration.color} p-2 rounded-lg flex-shrink-0`}>
-                        <integration.icon className="h-5 w-5 text-white" />
+                  <div className="flex items-start gap-4">
+                    {/* Icon */}
+                    <div className={`${integration.color} p-3 rounded-lg flex-shrink-0`}>
+                      <integration.icon className="h-6 w-6 text-white" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <h3 className="text-sidebar-foreground font-semibold text-lg">
+                            {integration.name}
+                          </h3>
+                          {getPopularityBadge(integration.popularity)}
+                          {getStatusBadge(integration.status)}
+                        </div>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-sidebar-foreground/70 hover:text-sidebar-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <MoreVerticalIcon className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                              <SettingsIcon className="h-4 w-4 mr-2" />
+                              Configure
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <BookOpenIcon className="h-4 w-4 mr-2" />
+                              Documentation
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <ExternalLinkIcon className="h-4 w-4 mr-2" />
+                              View Details
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-sidebar-foreground font-semibold mb-1">
-                          {integration.name}
-                        </h3>
-                        {getStatusBadge(integration.status)}
+
+                      <p className="text-sidebar-foreground/70 text-sm mb-4 leading-relaxed">
+                        {integration.description}
+                      </p>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4 text-xs text-sidebar-foreground/60">
+                          <div className="flex items-center gap-1">
+                            <ClockIcon className="h-3 w-3" />
+                            <span>Setup: {integration.setupTime}</span>
+                          </div>
+                          <Badge variant="outline" className="text-xs bg-sidebar-foreground/10 text-sidebar-foreground/70 border-sidebar-foreground/20">
+                            {integration.category}
+                          </Badge>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          {integration.status === 'connected' && (
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => handleToggleIntegration(integration.id)}
+                                className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                                  integrationStates[integration.id] ? 'bg-blue-600' : 'bg-gray-600'
+                                }`}
+                              >
+                                <span
+                                  className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                                    integrationStates[integration.id] ? 'translate-x-4' : 'translate-x-0'
+                                  }`}
+                                />
+                              </button>
+                              <span className="text-sm text-sidebar-foreground/70">
+                                {integrationStates[integration.id] ? 'Enabled' : 'Disabled'}
+                              </span>
+                            </div>
+                          )}
+                          
+                          {integration.status === 'available' ? (
+                            <Button
+                              size="sm"
+                              className="bg-blue-600 hover:bg-blue-700 text-white"
+                            >
+                              Connect
+                            </Button>
+                          ) : (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="bg-transparent border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent"
+                            >
+                              <EditIcon className="h-4 w-4 mr-2" />
+                              Configure
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 text-sidebar-foreground/70 hover:text-sidebar-foreground opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <MoreVerticalIcon className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>
-                          <SettingsIcon className="h-4 w-4 mr-2" />
-                          Configure
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <ExternalLinkIcon className="h-4 w-4 mr-2" />
-                          Documentation
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-
-                  <p className="text-sidebar-foreground/70 text-sm mb-4 line-clamp-2">
-                    {integration.description}
-                  </p>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-xs text-sidebar-foreground/60">
-                      Setup time: {integration.setupTime}
-                    </div>
-                    <Badge variant="outline" className="text-xs bg-sidebar-foreground/10 text-sidebar-foreground/70 border-sidebar-foreground/20">
-                      {integration.category}
-                    </Badge>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-sidebar-border">
-                    {integration.status === 'connected' ? (
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => handleToggleIntegration(integration.id)}
-                          className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                            integrationStates[integration.id] ? 'bg-blue-600' : 'bg-gray-600'
-                          }`}
-                        >
-                          <span
-                            className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                              integrationStates[integration.id] ? 'translate-x-4' : 'translate-x-0'
-                            }`}
-                          />
-                        </button>
-                        <span className="text-sm text-sidebar-foreground/70">
-                          {integrationStates[integration.id] ? 'Enabled' : 'Disabled'}
-                        </span>
-                      </div>
-                    ) : (
-                      <Button
-                        size="sm"
-                        className="bg-blue-600 hover:bg-blue-700 text-white"
-                      >
-                        Connect
-                      </Button>
-                    )}
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="bg-transparent border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent"
-                    >
-                      <SettingsIcon className="h-4 w-4 mr-2" />
-                      Setup
-                    </Button>
                   </div>
                 </Card>
               ))}
