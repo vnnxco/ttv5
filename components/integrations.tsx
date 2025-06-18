@@ -24,7 +24,6 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { Switch } from '@/components/ui/switch'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -334,10 +333,18 @@ export function Integrations() {
                   <div className="flex items-center justify-between pt-4 border-t border-sidebar-border">
                     {integration.status === 'connected' ? (
                       <div className="flex items-center gap-2">
-                        <Switch
-                          checked={integrationStates[integration.id]}
-                          onCheckedChange={() => handleToggleIntegration(integration.id)}
-                        />
+                        <button
+                          onClick={() => handleToggleIntegration(integration.id)}
+                          className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                            integrationStates[integration.id] ? 'bg-blue-600' : 'bg-gray-600'
+                          }`}
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                              integrationStates[integration.id] ? 'translate-x-4' : 'translate-x-0'
+                            }`}
+                          />
+                        </button>
                         <span className="text-sm text-sidebar-foreground/70">
                           {integrationStates[integration.id] ? 'Enabled' : 'Disabled'}
                         </span>
