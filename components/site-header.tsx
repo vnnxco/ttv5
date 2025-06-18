@@ -4,16 +4,20 @@ import { SidebarTrigger } from '@/components/ui/sidebar'
 export function SiteHeader({ currentView }: { currentView?: string }) {
   const getPageTitle = () => {
     switch (currentView) {
-      case 'home':
-        return 'Home'
+      case 'dashboard':
+        return 'Dashboard'
       case 'chat':
         return 'AI Chat'
       case 'agents':
         return 'Agents'
-      case 'projects':
-        return 'Projects'
+      case 'knowledge-base':
+        return 'Knowledge Base'
+      case 'analytics':
+        return 'Analytics'
+      case 'integrations':
+        return 'Integrations'
       default:
-        return 'Documents'
+        return 'Dashboard'
     }
   }
 

@@ -35,13 +35,12 @@ import {
 } from '@/components/ui/sidebar'
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
-  currentView?: 'home' | 'chat' | 'agents' | 'projects'
-  onNavigate?: (view: 'home' | 'chat' | 'agents' | 'projects') => void
+  currentView?: 'dashboard' | 'chat' | 'agents' | 'knowledge-base' | 'analytics' | 'integrations'
+  onNavigate?: (view: 'dashboard' | 'chat' | 'agents' | 'knowledge-base' | 'analytics' | 'integrations') => void
   onNavigateToChat?: () => void
-  onNavigateToProjects?: () => void
 }
 
-export function AppSidebar({ currentView = 'home', onNavigate, onNavigateToChat, onNavigateToProjects, ...props }: AppSidebarProps) {
+export function AppSidebar({ currentView = 'dashboard', onNavigate, onNavigateToChat, ...props }: AppSidebarProps) {
   const data = {
     user: {
       name: "shadcn",
@@ -50,18 +49,11 @@ export function AppSidebar({ currentView = 'home', onNavigate, onNavigateToChat,
     },
     navMain: [
       {
-        title: "Home",
+        title: "Dashboard",
         url: "#",
         icon: HomeIcon,
-        isActive: currentView === 'home',
-        onClick: () => onNavigate?.('home'),
-      },
-      {
-        title: "Projects",
-        url: "#",
-        icon: ListIcon,
-        isActive: currentView === 'projects',
-        onClick: () => onNavigate?.('projects'),
+        isActive: currentView === 'dashboard',
+        onClick: () => onNavigate?.('dashboard'),
       },
       {
         title: "Agents",
@@ -71,16 +63,25 @@ export function AppSidebar({ currentView = 'home', onNavigate, onNavigateToChat,
         onClick: () => onNavigate?.('agents'),
       },
       {
-        title: "Folders",
+        title: "Knowledge Base",
         url: "#",
-        icon: FolderIcon,
-        isActive: false,
+        icon: DatabaseIcon,
+        isActive: currentView === 'knowledge-base',
+        onClick: () => onNavigate?.('knowledge-base'),
       },
       {
-        title: "Team",
+        title: "Analytics",
         url: "#",
-        icon: UsersIcon,
-        isActive: false,
+        icon: BarChartIcon,
+        isActive: currentView === 'analytics',
+        onClick: () => onNavigate?.('analytics'),
+      },
+      {
+        title: "Integrations",
+        url: "#",
+        icon: SettingsIcon,
+        isActive: currentView === 'integrations',
+        onClick: () => onNavigate?.('integrations'),
       },
     ],
     navClouds: [
