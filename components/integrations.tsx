@@ -19,7 +19,8 @@ import {
   CodeIcon,
   MoreVerticalIcon,
   EditIcon,
-  BookOpenIcon
+  BookOpenIcon,
+  ClockIcon
 } from "lucide-react"
 
 import { Button } from '@/components/ui/button'
