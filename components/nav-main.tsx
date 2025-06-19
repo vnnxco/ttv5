@@ -13,6 +13,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar'
 import { AuthPage } from '@/components/auth/auth-page'
+import { useAuth } from '@/hooks/use-auth'
 
 export function NavMain({
   items,
@@ -28,11 +29,21 @@ export function NavMain({
   onNavigateToChat?: () => void
 }) {
   const { isMobile } = useSidebar()
+  const { user } = useAuth()
   const [showAuth, setShowAuth] = useState(false)
+
+  const handleAuthClick = () => {
+    if (user) {
+      // User is already authenticated, maybe show profile or settings
+      return
+    }
+    setShowAuth(true)
+  }
 
   if (showAuth) {
     return <AuthPage onClose={() => setShowAuth(false)} />
   }
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -74,6 +85,21 @@ export function NavMain({
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
+        
+        {/* Sign In Button - only show if user is not authenticated */}
+        {!user && (
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                tooltip="Sign In"
+                onClick={handleAuthClick}
+                className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+              >
+                <span>Sign In</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        )}
       </SidebarGroupContent>
     </SidebarGroup>
   )

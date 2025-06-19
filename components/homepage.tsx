@@ -11,12 +11,16 @@ import {
   ZapIcon,
   SparklesIcon,
   BrainIcon,
-  StarIcon
+  StarIcon,
+  LogInIcon
 } from "lucide-react"
+import { useState } from "react"
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { useAuth } from '@/hooks/use-auth'
+import { AuthPage } from '@/components/auth/auth-page'
 
 const productFeatures = [
   { 
@@ -163,10 +167,25 @@ interface HomepageProps {
 }
 
 export function Homepage({ onNavigateToChat }: HomepageProps) {
+  const { user } = useAuth()
+  const [showAuth, setShowAuth] = useState(false)
+
   const handleFeatureClick = (feature: any) => {
     if (feature.isClickable && feature.title === "Knowledge Base") {
       onNavigateToChat()
     }
+  }
+
+  const handleAuthAction = () => {
+    if (!user) {
+      setShowAuth(true)
+    } else {
+      onNavigateToChat()
+    }
+  }
+
+  if (showAuth) {
+    return <AuthPage onClose={() => setShowAuth(false)} />
   }
 
   return (
@@ -179,7 +198,7 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
             <div>
               <p className="text-sm text-gray-400 mb-1">My Workspace</p>
               <h1 className="text-2xl sm:text-3xl font-medium text-white">
-                Good afternoon, Tails
+                {user ? `Good afternoon, ${user.user_metadata?.full_name || 'User'}` : 'Welcome to AI Dashboard'}
               </h1>
             </div>
             <div className="flex items-center gap-3">
@@ -194,10 +213,19 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
                 variant="outline"
                 size="sm"
                 className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600 hover:border-gray-500"
-                onClick={onNavigateToChat}
+                onClick={handleAuthAction}
               >
-                <MessageSquareIcon className="h-4 w-4 mr-2" />
-                Start Chat
+                {user ? (
+                  <>
+                    <MessageSquareIcon className="h-4 w-4 mr-2" />
+                    Start Chat
+                  </>
+                ) : (
+                  <>
+                    <LogInIcon className="h-4 w-4 mr-2" />
+                    Sign In
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -235,7 +263,7 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
               </Button>
             </div>
             <div className="space-y-4">
-              {recentConversations.map((conversation) => (
+              {user ? recentConversations.map((conversation) => (
                 <Card
                   key={conversation.id}
                   className="bg-sidebar border-0 hover:bg-sidebar-accent transition-colors cursor-pointer p-4"
@@ -264,7 +292,16 @@ export function Homepage({ onNavigateToChat }: HomepageProps) {
                     </div>
                   </div>
                 </Card>
-              ))}
+              )) : (
+                <Card className="bg-sidebar border-0 p-8 text-center">
+                  <LogInIcon className="h-12 w-12 text-sidebar-foreground/40 mx-auto mb-4" />
+                  <h3 className="text-sidebar-foreground text-lg font-semibold mb-2">Sign in to view conversations</h3>
+                  <p className="text-sidebar-foreground/70 mb-4">Access your chat history and continue conversations</p>
+                  <Button onClick={() => setShowAuth(true)} className="bg-blue-600 hover:bg-blue-700 text-white">
+                    Sign In
+                  </Button>
+                </Card>
+              )}
             </div>
           </div>
 
