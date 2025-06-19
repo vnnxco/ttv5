@@ -45,10 +45,10 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
       <div className="w-full max-w-md mx-auto text-center">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8 justify-center">
-          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-            <ArrowUpCircleIcon className="h-6 w-6 text-black" />
+          <div className="w-10 h-10 bg-sidebar-foreground rounded-lg flex items-center justify-center">
+            <ArrowUpCircleIcon className="h-6 w-6 text-sidebar" />
           </div>
-          <span className="text-xl font-semibold text-white">Acme Inc.</span>
+          <span className="text-xl font-semibold text-sidebar-foreground">Acme Inc.</span>
         </div>
 
         <div className="mb-8">
@@ -57,18 +57,18 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h1 className="text-2xl font-semibold text-white mb-2">
+          <h1 className="text-2xl font-semibold text-sidebar-foreground mb-2">
             Check your email
           </h1>
-          <p className="text-gray-400">
-            We've sent a password reset link to <span className="text-white">{email}</span>
+          <p className="text-sidebar-foreground/70">
+            We've sent a password reset link to <span className="text-sidebar-foreground">{email}</span>
           </p>
         </div>
 
         <Button
           onClick={onBack}
           variant="outline"
-          className="w-full bg-gray-800 border-gray-700 text-white hover:bg-gray-700 hover:text-white"
+          className="w-full bg-sidebar-accent border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent/80 hover:text-sidebar-foreground"
         >
           <ArrowLeftIcon className="h-4 w-4 mr-2" />
           Back to login
@@ -81,24 +81,24 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
     <div className="w-full max-w-md mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-          <ArrowUpCircleIcon className="h-6 w-6 text-black" />
+        <div className="w-10 h-10 bg-sidebar-foreground rounded-lg flex items-center justify-center">
+          <ArrowUpCircleIcon className="h-6 w-6 text-sidebar" />
         </div>
-        <span className="text-xl font-semibold text-white">Acme Inc.</span>
+        <span className="text-xl font-semibold text-sidebar-foreground">Acme Inc.</span>
       </div>
 
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-white mb-2">
+        <h1 className="text-2xl font-semibold text-sidebar-foreground mb-2">
           Forgot your password?
         </h1>
-        <p className="text-gray-400">
+        <p className="text-sidebar-foreground/70">
           Enter your email address and we'll send you a link to reset your password
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-white">
+          <Label htmlFor="email" className="text-sidebar-foreground">
             Email
           </Label>
           <Input
@@ -107,14 +107,14 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
             placeholder="m@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+            className="bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50 focus:border-blue-500 focus:ring-blue-500"
             disabled={isLoading}
           />
         </div>
 
         <Button
           type="submit"
-          className="w-full bg-white text-black hover:bg-gray-100 font-medium"
+          className="w-full bg-sidebar-foreground text-sidebar hover:bg-sidebar-foreground/90 font-medium"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -131,7 +131,7 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
       <Button
         onClick={onBack}
         variant="ghost"
-        className="w-full mt-4 text-gray-400 hover:text-white hover:bg-gray-800"
+        className="w-full mt-4 text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent"
       >
         <ArrowLeftIcon className="h-4 w-4 mr-2" />
         Back to login

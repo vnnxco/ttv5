@@ -1,6 +1,7 @@
 "use client"
 
 import { MailIcon, PlusCircleIcon, type LucideIcon } from "lucide-react"
+import { useState } from "react"
 
 import { Button } from '@/components/ui/button'
 import {
@@ -11,6 +12,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { AuthPage } from '@/components/auth/auth-page'
 
 export function NavMain({
   items,
@@ -26,7 +28,11 @@ export function NavMain({
   onNavigateToChat?: () => void
 }) {
   const { isMobile } = useSidebar()
+  const [showAuth, setShowAuth] = useState(false)
 
+  if (showAuth) {
+    return <AuthPage onClose={() => setShowAuth(false)} />
+  }
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -34,7 +40,7 @@ export function NavMain({
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
               tooltip="Quick Create"
-              className="min-w-8 bg-white text-black duration-200 ease-linear hover:bg-white/90 hover:text-black active:bg-white/90 active:text-black"
+              className="min-w-8 bg-sidebar-foreground text-sidebar duration-200 ease-linear hover:bg-sidebar-foreground/90 hover:text-sidebar active:bg-sidebar-foreground/90 active:text-sidebar"
             >
               <PlusCircleIcon />
               <span>Quick Create</span>
@@ -43,7 +49,7 @@ export function NavMain({
               size="icon"
               className={
                 isMobile
-                  ? "h-9 w-9 shrink-0 group-data-[collapsible=icon]:opacity-0 border-[hsl(240_3.7%_15.9%)] bg-transparent text-[hsl(240_4.8%_95.9%)] hover:bg-[hsl(240_3.7%_15.9%)] hover:text-[hsl(240_4.8%_95.9%)]"
+                  ? "h-9 w-9 shrink-0 group-data-[collapsible=icon]:opacity-0 border-sidebar-border bg-transparent text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground"
                   : "h-9 w-9 shrink-0 group-data-[collapsible=icon]:opacity-0"
               }
               variant="outline"

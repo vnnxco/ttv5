@@ -68,24 +68,24 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
     <div className="w-full max-w-md mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-          <ArrowUpCircleIcon className="h-6 w-6 text-black" />
+        <div className="w-10 h-10 bg-sidebar-foreground rounded-lg flex items-center justify-center">
+          <ArrowUpCircleIcon className="h-6 w-6 text-sidebar" />
         </div>
-        <span className="text-xl font-semibold text-white">Acme Inc.</span>
+        <span className="text-xl font-semibold text-sidebar-foreground">Acme Inc.</span>
       </div>
 
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-white mb-2">
+        <h1 className="text-2xl font-semibold text-sidebar-foreground mb-2">
           Create your account
         </h1>
-        <p className="text-gray-400">
+        <p className="text-sidebar-foreground/70">
           Enter your information below to create your account
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="fullName" className="text-white">
+          <Label htmlFor="fullName" className="text-sidebar-foreground">
             Full Name
           </Label>
           <Input
@@ -94,13 +94,13 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
             placeholder="John Doe"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+            className="bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50 focus:border-blue-500 focus:ring-blue-500"
             disabled={isLoading}
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-white">
+          <Label htmlFor="email" className="text-sidebar-foreground">
             Email
           </Label>
           <Input
@@ -109,13 +109,13 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
             placeholder="m@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+            className="bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50 focus:border-blue-500 focus:ring-blue-500"
             disabled={isLoading}
           />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="password" className="text-white">
+          <Label htmlFor="password" className="text-sidebar-foreground">
             Password
           </Label>
           <div className="relative">
@@ -124,14 +124,14 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 pr-10"
+              className="bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50 focus:border-blue-500 focus:ring-blue-500 pr-10"
               disabled={isLoading}
               placeholder="At least 6 characters"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-sidebar-foreground/50 hover:text-sidebar-foreground/70"
             >
               {showPassword ? (
                 <EyeOffIcon className="h-4 w-4" />
@@ -143,7 +143,7 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="confirmPassword" className="text-white">
+          <Label htmlFor="confirmPassword" className="text-sidebar-foreground">
             Confirm Password
           </Label>
           <div className="relative">
@@ -152,14 +152,14 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
               type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 pr-10"
+              className="bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50 focus:border-blue-500 focus:ring-blue-500 pr-10"
               disabled={isLoading}
               placeholder="Confirm your password"
             />
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-sidebar-foreground/50 hover:text-sidebar-foreground/70"
             >
               {showConfirmPassword ? (
                 <EyeOffIcon className="h-4 w-4" />
@@ -172,7 +172,7 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
 
         <Button
           type="submit"
-          className="w-full bg-white text-black hover:bg-gray-100 font-medium"
+          className="w-full bg-sidebar-foreground text-sidebar hover:bg-sidebar-foreground/90 font-medium"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -189,17 +189,17 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
       <div className="mt-6">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-700" />
+            <div className="w-full border-t border-sidebar-border" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-gray-900 text-gray-400">Or continue with</span>
+            <span className="px-2 bg-sidebar text-sidebar-foreground/70">Or continue with</span>
           </div>
         </div>
 
         <Button
           type="button"
           variant="outline"
-          className="w-full mt-4 bg-gray-800 border-gray-700 text-white hover:bg-gray-700 hover:text-white"
+          className="w-full mt-4 bg-sidebar-accent border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent/80 hover:text-sidebar-foreground"
           onClick={handleGoogleSignIn}
           disabled={isLoading}
         >
@@ -229,7 +229,7 @@ export function SignupForm({ onToggleMode }: SignupFormProps) {
         </Button>
       </div>
 
-      <p className="mt-6 text-center text-sm text-gray-400">
+      <p className="mt-6 text-center text-sm text-sidebar-foreground/70">
         Already have an account?{" "}
         <button
           type="button"

@@ -55,24 +55,24 @@ export function LoginForm({ onToggleMode, onForgotPassword }: LoginFormProps) {
     <div className="w-full max-w-md mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-          <ArrowUpCircleIcon className="h-6 w-6 text-black" />
+        <div className="w-10 h-10 bg-sidebar-foreground rounded-lg flex items-center justify-center">
+          <ArrowUpCircleIcon className="h-6 w-6 text-sidebar" />
         </div>
-        <span className="text-xl font-semibold text-white">Acme Inc.</span>
+        <span className="text-xl font-semibold text-sidebar-foreground">Acme Inc.</span>
       </div>
 
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-white mb-2">
+        <h1 className="text-2xl font-semibold text-sidebar-foreground mb-2">
           Login to your account
         </h1>
-        <p className="text-gray-400">
+        <p className="text-sidebar-foreground/70">
           Enter your email below to login to your account
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-white">
+          <Label htmlFor="email" className="text-sidebar-foreground">
             Email
           </Label>
           <Input
@@ -81,14 +81,14 @@ export function LoginForm({ onToggleMode, onForgotPassword }: LoginFormProps) {
             placeholder="m@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+            className="bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50 focus:border-blue-500 focus:ring-blue-500"
             disabled={isLoading}
           />
         </div>
 
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="password" className="text-white">
+            <Label htmlFor="password" className="text-sidebar-foreground">
               Password
             </Label>
             <button
@@ -105,13 +105,13 @@ export function LoginForm({ onToggleMode, onForgotPassword }: LoginFormProps) {
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 pr-10"
+              className="bg-sidebar-accent border-sidebar-border text-sidebar-foreground placeholder:text-sidebar-foreground/50 focus:border-blue-500 focus:ring-blue-500 pr-10"
               disabled={isLoading}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-sidebar-foreground/50 hover:text-sidebar-foreground/70"
             >
               {showPassword ? (
                 <EyeOffIcon className="h-4 w-4" />
@@ -124,7 +124,7 @@ export function LoginForm({ onToggleMode, onForgotPassword }: LoginFormProps) {
 
         <Button
           type="submit"
-          className="w-full bg-white text-black hover:bg-gray-100 font-medium"
+          className="w-full bg-sidebar-foreground text-sidebar hover:bg-sidebar-foreground/90 font-medium"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -141,17 +141,17 @@ export function LoginForm({ onToggleMode, onForgotPassword }: LoginFormProps) {
       <div className="mt-6">
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-700" />
+            <div className="w-full border-t border-sidebar-border" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-gray-900 text-gray-400">Or continue with</span>
+            <span className="px-2 bg-sidebar text-sidebar-foreground/70">Or continue with</span>
           </div>
         </div>
 
         <Button
           type="button"
           variant="outline"
-          className="w-full mt-4 bg-gray-800 border-gray-700 text-white hover:bg-gray-700 hover:text-white"
+          className="w-full mt-4 bg-sidebar-accent border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent/80 hover:text-sidebar-foreground"
           onClick={handleGoogleSignIn}
           disabled={isLoading}
         >
@@ -181,7 +181,7 @@ export function LoginForm({ onToggleMode, onForgotPassword }: LoginFormProps) {
         </Button>
       </div>
 
-      <p className="mt-6 text-center text-sm text-gray-400">
+      <p className="mt-6 text-center text-sm text-sidebar-foreground/70">
         Don't have an account?{" "}
         <button
           type="button"
