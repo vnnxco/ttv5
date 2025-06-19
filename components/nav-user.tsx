@@ -7,6 +7,7 @@ import {
   MoreVerticalIcon,
   UserCircleIcon,
 } from "lucide-react"
+import { toast } from "sonner"
 
 import {
   Avatar,
@@ -28,6 +29,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { useAuth } from '@/hooks/use-auth'
 
 export function NavUser({
   user,
@@ -39,6 +41,16 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const { signOut } = useAuth()
+
+  const handleSignOut = async () => {
+    const { error } = await signOut()
+    if (error) {
+      toast.error(error.message)
+    } else {
+      toast.success("Signed out successfully")
+    }
+  }
 
   return (
     <SidebarMenu>
@@ -98,7 +110,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut}>
               <LogOutIcon />
               Log out
             </DropdownMenuItem>
